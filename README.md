@@ -1,1 +1,5 @@
-# Weather-Dashboard
+# Weather Dashboard
+
+# Screenshots
+
+# Deployed Application
