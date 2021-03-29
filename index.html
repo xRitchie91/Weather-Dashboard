@@ -3,17 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Weather Dash</title>
-   
+    <title>Weather Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.27/moment-timezone-with-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.27/moment-timezone-utils.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
+    <title>Park Buddy</title>
+    <link rel="icon"
+        href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/sun-behind-cloud_26c5.png">
 </head>
 
 <body>
-    <header class="">
-        <h1>Weather Dash</h1>
+    <div class="jumbotron jumbotron-fluid bg-dark text-white">
+        <h2 class="text-center">Weather Dashboard</h2>
+    </div>
+    <header class="container">
+        <div class="row">
+            <!-- search button and stored locations -->
+            <div class="col-lg-9">
+                <div class="card" id="search-cities">
+                    <div class="card-header">
+                        <h1>Where Are You Headed?</h1>
+                        <form class="form-inline pb-2">
+                            <input type="text" class="form-control mr-2" id="search-input">
+                            <button type="submit" class="btn btn-primary" id="search-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </form>
+                    <div class="card hide" id="searched-cities-card">
+                        <ul class="list-group list-group-flush" id="searched-cities">
+                        </ul>
+                    </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>Forcast</h2>
     </header>
 
-    
+
     <script src="script.js"></script>
 </body>
 
