@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,8 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid bg-dark text-white">
-        <h2 class="text-center">Weather Dashboard</h2>
+    <div class="jumbotron jumbotron-fluid text-dark">
+        <h2 class="text-center">🌞Weather Dashboard🌩️</h2>
     </div>
     <header class="container">
         <div class="row">
@@ -27,25 +27,27 @@
             <div class="col-lg-9">
                 <div class="card" id="search-cities">
                     <div class="card-header">
-                        <h1>Where Are You Headed?</h1>
+                        <h1>How's The Weather In..</h1>
                         <form class="form-inline pb-2">
                             <input type="text" class="form-control mr-2" id="search-input">
                             <button type="submit" class="btn btn-primary" id="search-btn">
                                 <i class="fa fa-search"></i>
                             </button>
                         </form>
-                    <div class="card hide" id="searched-cities-card">
-                        <ul class="list-group list-group-flush" id="searched-cities">
-                        </ul>
-                    </div>    
+                        <div class="card hide" id="searched-cities-card">
+                            <ul class="list-group list-group-flush" id="searched-cities-list">
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h2>Forcast</h2>
+        <div class="col-md-9">
+        <h2>Forecast</h2></div>
+
     </header>
 
-
+    <script src="scountry-code-to-country-name-conversion.js"></script>
     <script src="script.js"></script>
 </body>
 
