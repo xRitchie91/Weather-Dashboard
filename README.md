@@ -23,4 +23,4 @@ The application should also store history of searched cities. Within the forecas
 [Weather Dashboard](https://xritchie91.github.io/Weather-Dashboard/)
 
 # Questions
-[Ritchie](https://github.com/xRitchie91)
+[Reach Out](https://github.com/xRitchie91)
