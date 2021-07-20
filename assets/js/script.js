@@ -25,7 +25,73 @@ var iconcode = "";
 var iconurl = "";
 var country = ""; */
 
-var getApiUrl = function () {
+// function that activates the api and sets everything up to be retrieved and displayed in the html
+function getWeather(zipcode) {
+    var weatherAPI = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + ",us&units=imperial&appid=62945687d697ead5f1333d2a6ea75d0a";
+
+    fetch(weatherAPI).then(function (response) {
+            return response.json();
+        })
+
+        .then(function(response) {
+            var cityName = document.querySelector("#name-of-city")
+            cityName.textContent = response.name;
+
+            var currentDay = document.querySelector("#current-day")
+            currentDay.textContent = moment().format("[(]MM[/]D[/]YYYY[)]")
+
+            var weatherIcon = document.querySelector("#weather-icon")
+            weatherIcon.setAttribute("src", 'http://openweathermap.org/img/wn/'+response.weather[0].icon+'.png');
+            
+            var temp = document.querySelector("#current-temp")
+            temp.textContent = "Temperature: " + response.main.temp + "°F";
+
+            var feelsLike = document.querySelector("#feels-like")
+            feelsLike.textContent = "Feels Like: " + response.main.feels_like + "°F";
+            
+            var humidity = document.querySelector("#humidity")
+            humidity.textContent = "Humidity: " + response.main.humidity + "%";
+            
+            var windSpeed = document.querySelector("#wind-speed")
+            windSpeed.textContent = "Wind: " + response.wind.speed + " mph";
+
+            // city info
+            var searchObj = [{
+                city: response.name,
+                searchID: currentSearchResult,
+                zipcode: zipcode,
+                lat: response.coord.lat,
+                long: response.coord.lon
+            }]
+
+            searchHistory.push(searchObj)
+            localStorage.setItem("searches", JSON.stringify(searchHistory))
+
+            var buttonContainer = document.createElement("div")
+            buttonContainer.className = "row"
+
+            var historyButton = document.createElement("button")
+            historyButton.className = "btn bg-white border history-button city-button"
+            historyButton.id = zipcode
+            historyButton.textContent = response.name
+            historyButton.addEventListener("click", function(e){
+                console.log(event.target.id);
+                getWeather(event.target.id);
+            });
+
+            buttonContainer.appendChild(historyButton);
+            searchContainerEl.appendChild(buttonContainer);
+
+            var lat = response.coord.lat
+            var lon = response.coord.lon
+
+            getUVindex(lat,lon)
+        })
+
+    currentSearchResult++
+};
+
+/* var getApiUrl = function () {
     // api call
     var apiUrl = "api.openweathermap.org/data/2.5/forecast?q={city name}&appid={apiKey}" + user + "/weather";
     // api response
@@ -61,7 +127,7 @@ $(document).ready(function () {
         var lastCity = listOfSearchedCities[0];
         searchCity(lastCity);
     }
-});
+}); */
 
 $("#search-btn").on("click", function () {
     event.preventDefault();
