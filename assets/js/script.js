@@ -85,13 +85,13 @@ function getForecast(zipcode) {
             headerD1.className = "forecast-head";
             headerD1.textContent = moment().add(1, "days").format("MM[/]D[/]YYYY");
 
-            var day1Temp = document.querySelector("#day-1-temp")
-            day1Temp.className = "forcast-information"
-            day1Temp.textContent = "Temp: " + Math.floor(response.list[3].main.temp) + "°F";
+            var tempD1 = document.querySelector("#day-1-temp")
+            tempD1.className = "forcast-information"
+            tempD1.textContent = "Temp: " + Math.floor(response.list[3].main.temp) + "°F";
 
-            var day1Humidity = document.querySelector("#day-1-humidity")
-            day1Humidity.className = "forcast-information"
-            day1Humidity.textContent = "Humidity: " + response.list[3].main.humidity + "%";
+            var humidityD1 = document.querySelector("#day-1-humidity")
+            humidityD1.className = "forcast-information"
+            humidityD1.textContent = "Humidity: " + response.list[3].main.humidity + "%";
 
             var day1Icon = document.querySelector("#day1-icon")
             day1Icon.setAttribute("src", 'http://openweathermap.org/img/wn/' + response.list[3].weather[0].icon + '.png')
@@ -104,13 +104,13 @@ function getForecast(zipcode) {
             headerD2.className = "forecast-head";
             headerD2.textContent = moment().add(2, "days").format("MM[/]D[/]YYYY");
 
-            var day2Temp = document.querySelector("#day-2-temp")
-            day2Temp.className = "forcast-information"
-            day2Temp.textContent = "Temp: " + Math.floor(response.list[11].main.temp) + "°F";
+            var tempD2 = document.querySelector("#day-2-temp")
+            tempD2.className = "forcast-information"
+            tempD2.textContent = "Temp: " + Math.floor(response.list[11].main.temp) + "°F";
 
-            var day2Humidity = document.querySelector("#day-2-humidity")
-            day2Humidity.className = "forcast-information"
-            day2Humidity.textContent = "Humidity: " + response.list[11].main.humidity + "%";
+            var humidityD2 = document.querySelector("#day-2-humidity")
+            humidityD2.className = "forcast-information"
+            humidityD2.textContent = "Humidity: " + response.list[11].main.humidity + "%";
 
             var day2Icon = document.querySelector("#day2-icon")
             day2Icon.setAttribute("src", 'http://openweathermap.org/img/wn/' + response.list[11].weather[0].icon + '.png')
@@ -123,13 +123,13 @@ function getForecast(zipcode) {
             headerD3.className = "forecast-head";
             headerD3.textContent = moment().add(3, "days").format("MM[/]D[/]YYYY");
 
-            var day3Temp = document.querySelector("#day-3-temp")
-            day3Temp.className = "forcast-information"
-            day3Temp.textContent = "Temp: " + Math.floor(response.list[19].main.temp) + "°F";
+            var tempD3 = document.querySelector("#day-3-temp")
+            tempD3.className = "forcast-information"
+            tempD3.textContent = "Temp: " + Math.floor(response.list[19].main.temp) + "°F";
 
-            var day3Humidity = document.querySelector("#day-3-humidity")
-            day3Humidity.className = "forcast-information"
-            day3Humidity.textContent = "Humidity: " + response.list[19].main.humidity + "%";
+            var humidityD3 = document.querySelector("#day-3-humidity")
+            humidityD3.className = "forcast-information"
+            humidityD3.textContent = "Humidity: " + response.list[19].main.humidity + "%";
 
             var day3Icon = document.querySelector("#day3-icon")
             day3Icon.setAttribute("src", 'http://openweathermap.org/img/wn/' + response.list[19].weather[0].icon + '.png')
@@ -142,13 +142,13 @@ function getForecast(zipcode) {
             headerD4.className = "forecast-head";
             headerD4.textContent = moment().add(4, "days").format("MM[/]D[/]YYYY");
 
-            var day4Temp = document.querySelector("#day-4-temp")
-            day4Temp.className = "forcast-information"
-            day4Temp.textContent = "Temp: " + Math.floor(response.list[27].main.temp) + "°F";
+            var tempD4 = document.querySelector("#day-4-temp")
+            tempD4.className = "forcast-information"
+            tempD4.textContent = "Temp: " + Math.floor(response.list[27].main.temp) + "°F";
 
-            var day4Humidity = document.querySelector("#day-4-humidity")
-            day4Humidity.className = "forcast-information"
-            day4Humidity.textContent = "Humidity: " + response.list[27].main.humidity + "%";
+            var humidityD4 = document.querySelector("#day-4-humidity")
+            humidityD4.className = "forcast-information"
+            humidityD4.textContent = "Humidity: " + response.list[27].main.humidity + "%";
 
             var day4Icon = document.querySelector("#day4-icon")
             day4Icon.setAttribute("src", 'http://openweathermap.org/img/wn/' + response.list[27].weather[0].icon + '.png')
@@ -161,13 +161,13 @@ function getForecast(zipcode) {
             headerD5.className = "forecast-head";
             headerD5.textContent = moment().add(5, "days").format("MM[/]D[/]YYYY");
 
-            var day5Temp = document.querySelector("#day-5-temp")
-            day5Temp.className = "forcast-information"
-            day5Temp.textContent = "Temp: " + Math.floor(response.list[35].main.temp) + "°F";
+            var tempD5 = document.querySelector("#day-5-temp")
+            tempD5.className = "forcast-information"
+            tempD5.textContent = "Temp: " + Math.floor(response.list[35].main.temp) + "°F";
 
-            var day5Humidity = document.querySelector("#day-5-humidity")
-            day5Humidity.className = "forcast-information"
-            day5Humidity.textContent = "Humidity: " + response.list[35].main.humidity + "%";
+            var humidityD5 = document.querySelector("#day-5-humidity")
+            humidityD5.className = "forcast-information"
+            humidityD5.textContent = "Humidity: " + response.list[35].main.humidity + "%";
 
             var day5Icon = document.querySelector("#day5-icon")
             day5Icon.setAttribute("src", 'http://openweathermap.org/img/wn/' + response.list[35].weather[0].icon + '.png')
