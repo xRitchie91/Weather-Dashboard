@@ -1,3 +1,14 @@
+  
 .hide {
     display: none;
   }
+
+.hero {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  color: white;
+}
+.container {
+  color: white;
+}

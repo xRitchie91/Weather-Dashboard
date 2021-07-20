@@ -1,11 +1,10 @@
-var clearSearchBtn = document.querySelector("#reset-button");
+var clearCitiesBtn = document.querySelector("#reset-button");
 var zipcodeUserInputEl = document.querySelector("#zipcode");
 var zipcodeFormEl = document.querySelector("#zipcode-form");
 
-
 var searchContainerEl = document.querySelector("#city-search-history")
-var currentSearchResult = 0;
 var searchHistory = [];
+var currentSearch = 0;
 
 // this activates our api and retrieves and displays our forcast in the html
 function getWeather(zipcode) {
@@ -14,7 +13,6 @@ function getWeather(zipcode) {
     fetch(weatherAPI).then(function (response) {
         return response.json();
     })
-
         .then(function (response) {
             var cityName = document.querySelector("#name-of-city")
             cityName.textContent = response.name;
@@ -40,12 +38,11 @@ function getWeather(zipcode) {
             // city info
             var searchObj = [{
                 city: response.name,
-                searchID: currentSearchResult,
+                searchID: currentSearch,
                 zipcode: zipcode,
                 lat: response.coord.lat,
                 long: response.coord.lon
             }]
-
             searchHistory.push(searchObj)
             localStorage.setItem("searches", JSON.stringify(searchHistory))
 
@@ -66,11 +63,9 @@ function getWeather(zipcode) {
 
             var lat = response.coord.lat
             var lon = response.coord.lon
-
             getUVindex(lat, lon)
         })
-
-    currentSearchResult++
+    currentSearch++
 };
 
 // function that allocates all weather info using the weather api key
@@ -179,56 +174,6 @@ function getForecast(zipcode) {
         })
 }
 
-/* 
-$(document).on("click", ".list-group-item", function () {
-    var cityName = $(this).text();
-    clearDisplayedWeatherInfo();
-    resetGlobalVariables();
-    searchCity(cityName);
-});
-
- function getColorCodeForUVIndex(uvIndex) {
-    var uvIndexValue = parseFloat(uvIndex);
-    var colorcode = "";
-    if (uvIndexValue <= 2) {
-        colorcode = "#00ff00";
-    }
-    else if ((uvIndexValue > 2) && (uvIndexValue <= 5)) {
-        colorcode = "#ffff00";
-    }
-    else if ((uvIndexValue > 5) && (uvIndexValue <= 7)) {
-        colorcode = "#ffa500";
-    }
-    else if ((uvIndexValue > 7) && (uvIndexValue <= 10)) {
-        colorcode = "#9e1a1a";
-    }
-    else if (uvIndexValue > 10) {
-        colorcode = "#7f00ff";
-    }
-    return colorcode;
-}
-
-function resetGlobalVariables() {
-    city = "";
-    currentDate = "";
-    tempF = "";
-    humidityValue = "";
-    windSpeed = "";
-    uvIndexValue = "";
-    latitude = "";
-    longitude = "";
-    minTempK = "";
-    maxTempK = "";
-    minTempF = "";
-    maxTempF = "";
-    dayhumidity = "";
-    currentWeatherIconCode = "";
-    currentWeatherIconUrl = "";
-    iconcode = "";
-    iconurl = "";
-    country = "";
-} */
-
 // function that keeps and loads the search history
 function loadSearchHistory() {
     searchHistory = localStorage.getItem("searches")
@@ -249,7 +194,7 @@ function clearSearchHistory() {
 
 // function that shows search history to the user
 function displaySearches() {
-    currentSearchResult = 0;
+    currentSearch = 0;
     for (var i = 0; i < searchHistory.length; i++) {
 
         var buttonContainer = document.createElement("div")
@@ -258,71 +203,33 @@ function displaySearches() {
         var historyButton = document.createElement("button");
         //history button class add to match for event listener
         historyButton.className = "btn bg-white border history-button city-button"
-        historyButton.id = "history-" + currentSearchResult
-        historyButton.textContent = searchHistory[currentSearchResult][0].city
-        historyButton.dataset = searchHistory[currentSearchResult][0].zipcode
+        historyButton.id = "history-" + currentSearch
+        historyButton.textContent = searchHistory[currentSearch][0].city
+        historyButton.dataset = searchHistory[currentSearch][0].zipcode
 
         buttonContainer.appendChild(historyButton);
         searchContainerEl.appendChild(buttonContainer);
 
-        currentSearchResult++
+        currentSearch++
     }
 }
 
-function searchCity(cityName) {
-    // build URL to query the database
-    console.log(cityName);
-    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +
-        cityName + "&appid=" + APIKey;
+// function that makes sure that user enters a valid zipcode
+function handleSubmit(event) {
+    event.preventDefault();
+    var zipcode = Number(zipcodeUserInputEl.value.trim());
 
-    // run AJAX to OpenWatherAPI
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
+    if (zipcode) {
+        getWeather(zipcode);
+        getForecast(zipcode);
+        zipcodeUserInputEl.value = "";
+    } else {
+        alert("Please enter a valid zipcode!");
+    }
+};
 
-        // store all of the retrieved data inside of an object called "response"
-        .then(function (response) {
-            var result = response;
-            console.log(result);
-            city = result.name.trim();
-            //  var countryCode = result.sys.country;
-            //  country = getCountryName(countryCode).trim();
-            //  currentDate = moment().tz(country + "/" + city).format('l');
-            currentDate = moment.unix(result.dt).format("l");
-            console.log(currentDate);
-            humidityValue = result.main.humidity;
-            windSpeed = result.wind.speed;
-            currentWeatherIconCode = result.weather[0].icon;
-            currentWeatherIconUrl = "https://openweathermap.org/img/w/" + currentWeatherIconCode + ".png";
-            var uvIndexQueryUrl = "https://api.openweathermap.org/data/2.5/uvi?&appid=" + APIKey + "&lat=" + latitude + "&lon=" + longitude;
-            $.ajax({
-                url: uvIndexQueryUrl,
-                method: "GET"
-            })
-                .then(function (response) {
-                    uvIndexValue = response.value;
-                    displayCurrentWeather()
+// handles clicks for the clear and search buttons
+zipcodeFormEl.addEventListener("submit", handleSubmit);
+clearCitiesBtn.addEventListener("click", clearSearchHistory);
 
-                    var fiveDayQueryUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&appid=" + APIKey + "&cnt=5";
-                    $.ajax({
-                        url: fiveDayQueryUrl,
-                        method: "GET"
-                    })
-                        .then(function (response) {
-                            var fiveDayForecast = response.list;
-                            addCardDeckHeader()
-                            for (var i = 0; i < 5; i++) {
-                                iconcode = fiveDayForecast[i].weather[0].icon;
-                                iconurl = "https://openweathermap.org/img/w/" + iconcode + ".png";
-                                //  dateValue = moment().tz(country + "/" + city).add(i, 'days').format('l');
-                                dateValue = moment.unix(fiveDayForecast[i].dt).format('l');
-                                maxTempK = fiveDayForecast[i].temp.max;
-                                maxTempF = (((fiveDayForecast[i].temp.max) - 273.15) * 1.80 + 32).toFixed(1);
-                                dayhumidity = fiveDayForecast[i].humidity;
-                                displayDayForeCast()
-                            }
-                        });
-                });
-        });
-}
+loadSearchHistory();
