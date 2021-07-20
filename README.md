@@ -12,7 +12,8 @@ The application should also store history of searched cities. Within the forecas
 - [Questions](#Questions)
 
 ### Screenshots
--
+![weatherdash2](https://user-images.githubusercontent.com/74946954/126265793-6b412b08-9f87-48e1-89ab-a493f4c838f5.png)
+![weatherdash1](https://user-images.githubusercontent.com/74946954/126265795-3cf20bdd-5f58-4fab-945e-517c553a2e4c.png)
 
 ## Languages
 - HTML
