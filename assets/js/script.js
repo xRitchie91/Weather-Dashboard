@@ -46,20 +46,20 @@ function getWeather(zipcode) {
             searchHistory.push(searchObj)
             localStorage.setItem("searches", JSON.stringify(searchHistory))
 
-            var buttonContainer = document.createElement("div")
-            buttonContainer.className = "row"
+            var btnContainer = document.createElement("div")
+            btnContainer.className = "row"
 
-            var historyButton = document.createElement("button")
-            historyButton.className = "btn bg-white border history-button city-button"
-            historyButton.id = zipcode
-            historyButton.textContent = response.name
-            historyButton.addEventListener("click", function (e) {
+            var historyBtn = document.createElement("button")
+            historyBtn.className = "btn bg-white border history-button city-button"
+            historyBtn.id = zipcode
+            historyBtn.textContent = response.name
+            historyBtn.addEventListener("click", function (e) {
                 console.log(event.target.id);
                 getWeather(event.target.id);
             });
 
-            buttonContainer.appendChild(historyButton);
-            searchContainerEl.appendChild(buttonContainer);
+            btnContainer.appendChild(historyBtn);
+            searchContainerEl.appendChild(btnContainer);
 
             var lat = response.coord.lat
             var lon = response.coord.lon
@@ -81,9 +81,9 @@ function getForecast(zipcode) {
             var day1El = document.querySelector("#day-1")
             day1El.className = "column col forecast-container"
 
-            var day1Header = document.querySelector("#day-1-date")
-            day1Header.className = "forecast-head";
-            day1Header.textContent = moment().add(1, "days").format("MM[/]D[/]YYYY");
+            var headerD1 = document.querySelector("#day-1-date")
+            headerD1.className = "forecast-head";
+            headerD1.textContent = moment().add(1, "days").format("MM[/]D[/]YYYY");
 
             var day1Temp = document.querySelector("#day-1-temp")
             day1Temp.className = "forcast-information"
@@ -100,9 +100,9 @@ function getForecast(zipcode) {
             var day2El = document.querySelector("#day-2")
             day2El.className = "column col forecast-container"
 
-            var day2Header = document.querySelector("#day-2-date")
-            day2Header.className = "forecast-head";
-            day2Header.textContent = moment().add(2, "days").format("MM[/]D[/]YYYY");
+            var headerD2 = document.querySelector("#day-2-date")
+            headerD2.className = "forecast-head";
+            headerD2.textContent = moment().add(2, "days").format("MM[/]D[/]YYYY");
 
             var day2Temp = document.querySelector("#day-2-temp")
             day2Temp.className = "forcast-information"
@@ -119,9 +119,9 @@ function getForecast(zipcode) {
             var day3El = document.querySelector("#day-3")
             day3El.className = "column col forecast-container"
 
-            var day3Header = document.querySelector("#day-3-date")
-            day3Header.className = "forecast-head";
-            day3Header.textContent = moment().add(3, "days").format("MM[/]D[/]YYYY");
+            var headerD3 = document.querySelector("#day-3-date")
+            headerD3.className = "forecast-head";
+            headerD3.textContent = moment().add(3, "days").format("MM[/]D[/]YYYY");
 
             var day3Temp = document.querySelector("#day-3-temp")
             day3Temp.className = "forcast-information"
@@ -138,9 +138,9 @@ function getForecast(zipcode) {
             var day4El = document.querySelector("#day-4")
             day4El.className = "column col forecast-container"
 
-            var day4Header = document.querySelector("#day-4-date")
-            day4Header.className = "forecast-head";
-            day4Header.textContent = moment().add(4, "days").format("MM[/]D[/]YYYY");
+            var headerD4 = document.querySelector("#day-4-date")
+            headerD4.className = "forecast-head";
+            headerD4.textContent = moment().add(4, "days").format("MM[/]D[/]YYYY");
 
             var day4Temp = document.querySelector("#day-4-temp")
             day4Temp.className = "forcast-information"
@@ -157,9 +157,9 @@ function getForecast(zipcode) {
             var day5El = document.querySelector("#day-5")
             day5El.className = "column col forecast-container"
 
-            var day5Header = document.querySelector("#day-5-date")
-            day5Header.className = "forecast-head";
-            day5Header.textContent = moment().add(5, "days").format("MM[/]D[/]YYYY");
+            var headerD5 = document.querySelector("#day-5-date")
+            headerD5.className = "forecast-head";
+            headerD5.textContent = moment().add(5, "days").format("MM[/]D[/]YYYY");
 
             var day5Temp = document.querySelector("#day-5-temp")
             day5Temp.className = "forcast-information"
@@ -197,18 +197,18 @@ function displaySearches() {
     currentSearch = 0;
     for (var i = 0; i < searchHistory.length; i++) {
 
-        var buttonContainer = document.createElement("div")
-        buttonContainer.className = "row"
+        var btnContainer = document.createElement("div")
+        btnContainer.className = "row"
 
-        var historyButton = document.createElement("button");
+        var historyBtn = document.createElement("button");
         //history button class add to match for event listener
-        historyButton.className = "btn bg-white border history-button city-button"
-        historyButton.id = "history-" + currentSearch
-        historyButton.textContent = searchHistory[currentSearch][0].city
-        historyButton.dataset = searchHistory[currentSearch][0].zipcode
+        historyBtn.className = "btn bg-white border history-button city-button"
+        historyBtn.id = "history-" + currentSearch
+        historyBtn.textContent = searchHistory[currentSearch][0].city
+        historyBtn.dataset = searchHistory[currentSearch][0].zipcode
 
-        buttonContainer.appendChild(historyButton);
-        searchContainerEl.appendChild(buttonContainer);
+        btnContainer.appendChild(historyBtn);
+        searchContainerEl.appendChild(btnContainer);
 
         currentSearch++
     }
