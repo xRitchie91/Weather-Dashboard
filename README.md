@@ -12,14 +12,14 @@ The application should also store history of searched cities. Within the forecas
 - [Questions](#Questions)
 
 ### Screenshots
-![weatherdash2](https://user-images.githubusercontent.com/74946954/126265793-6b412b08-9f87-48e1-89ab-a493f4c838f5.png)
 ![weatherdash1](https://user-images.githubusercontent.com/74946954/126265795-3cf20bdd-5f58-4fab-945e-517c553a2e4c.png)
+![weatherdash2](https://user-images.githubusercontent.com/74946954/126265793-6b412b08-9f87-48e1-89ab-a493f4c838f5.png)
 
 ## Languages
 - HTML
 - CSS
 - JavaScript
-- Bulma CSS
+- Bootstrap
 
 # Deploymet
 [Weather Dashboard](https://xritchie91.github.io/Weather-Dashboard/)
@@ -27,7 +27,7 @@ The application should also store history of searched cities. Within the forecas
 ## Contributors
 - [Ritchie](https://www.github.com/xRitchie91)
 - [Kyle](https://www.github.com/kjmckinley) who looked over my code to assist with troubleshooting and suggested I recreate my js code.
-- - [Emily](https://www.github.com/emilyepozzi) who I stubbornly went to to second guess Kyle's suggestion.
+- [Emily](https://www.github.com/emilyepozzi) who I stubbornly went to to second guess Kyle's suggestion.
 - [Lacey](https://www.github.com/lacey-griffith) who got me to  unfortunate realization that I need to change my code.
 
 # Questions
