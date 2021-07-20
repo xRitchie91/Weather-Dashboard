@@ -186,78 +186,8 @@ $(document).on("click", ".list-group-item", function () {
     resetGlobalVariables();
     searchCity(cityName);
 });
- 
-function displayCurrentWeather() {
-    var cardDiv = $("<div class='container border bg-light'>");
-    var weatherImage = $("<img>").attr('src', currentWeatherIconUrl);
-    var cardHeader = $("<h4>").text(city + " " + currentDate.toString());
-    cardHeader.append(weatherImage);
-    var temperatureEl = $("<p>").text("Temperature: " + tempF + " ºF");
-    var humidityEl = $("<p>").text("Humidity: " + humidityValue + "%");
-    var windSpeedEl = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
-    var uvIndexEl = $("<p>").text("UV Index: ");
-    // var uvIndexValueEl = $("<span>").text(uvIndexValue).css("background-color", getColorCodeForUVIndex(uvIndexValue)).addClass("text-white");
-    var uvIndexValueEl = $("<span>").text(uvIndexValue).css("background-color", getColorCodeForUVIndex(uvIndexValue));
-    uvIndexEl.append(uvIndexValueEl);
-    cardDiv.append(cardHeader);
-    cardDiv.append(temperatureEl);
-    cardDiv.append(humidityEl);
-    cardDiv.append(windSpeedEl);
-    cardDiv.append(uvIndexEl);
-    $("#current-weather-conditions").append(cardDiv);
-} */
 
-/*
-function displayDayForeCast() {
-    var imgEl = $("<img>").attr("src", iconurl);
-    var cardEl = $("<div class='card'>").addClass("pl-1 bg-primary text-light");
-    var cardBlockDiv = $("<div>").attr("class", "card-block");
-    var cardTitleDiv = $("<div>").attr("class", "card-block");
-    var cardTitleHeader = $("<h6>").text(dateValue).addClass("pt-2");
-    var cardTextDiv = $("<div>").attr("class", "card-text");
-    var minTempEl = $("<p>").text("Min Temp: " + minTempF + " ºF").css("font-size", "0.60rem");
-    var maxTempEl = $("<p>").text("Max Temp: " + maxTempF + " ºF").css("font-size", "0.60rem");
-    var humidityEl = $("<p>").text("Humidity: " + dayhumidity + "%").css("font-size", "0.60rem");
-
-    cardTextDiv.append(imgEl);
-    cardTextDiv.append(minTempEl);
-    cardTextDiv.append(maxTempEl);
-    cardTextDiv.append(humidityEl);
-    cardTitleDiv.append(cardTitleHeader);
-    cardBlockDiv.append(cardTitleDiv);
-    cardBlockDiv.append(cardTextDiv);
-    cardEl.append(cardBlockDiv);
-    $(".card-deck").append(cardEl);
-}
-
-function addCardDeckHeader() {
-    deckHeader = $("<h4>").text("5-Day Forecast").attr("id", "card-deck-title");
-    deckHeader.addClass("pt-4 pt-2");
-    $(".card-deck").before(deckHeader);
-}
-
-function clearDisplayedWeatherInfo() {
-    $("#current-weather-conditions").empty();
-    $("#card-deck-title").remove();
-    $(".card-deck").empty();
-}
-
-function displayCities(citiesList) {
-    $("#searched-cities-card").removeClass("hide");
-    var count = 0;
-    citiesList.length > 5 ? count = 5 : count = citiesList.length
-    for (var i = 0; i < count; i++) {
-        $("#searched-cities-list").css("list-style-type", "none");
-        $("#searched-cities-list").append(`<a href="#" class="list-group-item" style="text-decoration: none; color: black;">
-<li>${citiesList[i]}</li>
-</a>`);
-    }
-} */
-
-
-
-
-function getColorCodeForUVIndex(uvIndex) {
+ function getColorCodeForUVIndex(uvIndex) {
     var uvIndexValue = parseFloat(uvIndex);
     var colorcode = "";
     if (uvIndexValue <= 2) {
@@ -297,6 +227,46 @@ function resetGlobalVariables() {
     iconcode = "";
     iconurl = "";
     country = "";
+} */
+
+// function that keeps and loads the search history
+function loadSearchHistory() {
+    searchHistory = localStorage.getItem("searches")
+    if (!searchHistory || searchHistory === null) {
+        searchHistory = [];
+        return false;
+    }
+    searchHistory = JSON.parse(searchHistory)
+    displaySearches();
+}
+
+// function that clears and deletes search history
+function clearSearchHistory() {
+    searchHistory = [];
+    localStorage.clear();
+    location.reload();
+}
+
+// function that shows search history to the user
+function displaySearches() {
+    currentSearchResult = 0;
+    for (var i = 0; i < searchHistory.length; i++) {
+
+        var buttonContainer = document.createElement("div")
+        buttonContainer.className = "row"
+
+        var historyButton = document.createElement("button");
+        //history button class add to match for event listener
+        historyButton.className = "btn bg-white border history-button city-button"
+        historyButton.id = "history-" + currentSearchResult
+        historyButton.textContent = searchHistory[currentSearchResult][0].city
+        historyButton.dataset = searchHistory[currentSearchResult][0].zipcode
+
+        buttonContainer.appendChild(historyButton);
+        searchContainerEl.appendChild(buttonContainer);
+
+        currentSearchResult++
+    }
 }
 
 function searchCity(cityName) {
